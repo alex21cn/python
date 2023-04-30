@@ -17,12 +17,13 @@ def AddAWordInDict(key, value, dict):
 file = open('words.json','r')
 jsonStr = file.read()
 file.close()
+# dictEnFr = {'one':'une','two':'deux','three':'trois','four':'quatre','five':'cinq','six':'six'}
 dictEnFr = json.loads(jsonStr)
-print('Let''s start learning French: type end to finish.')
+print('Let''s start learning French: press enter to exist.')
 # A while loop is used to wait for user's input, until user type in 'end'
 while (True):
     en = input('Please input an English word: ')
-    if (en == 'end'):
+    if (en == ''):
         break
     # Call a procedure to return the translation, if not found, return a empty string
     fr = findAWordInDict(en, dictEnFr)
