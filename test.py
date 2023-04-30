@@ -1,3 +1,5 @@
+import json
+
 def findAWordInDict(en, dict):
     for element in dict:
         if (element == en):
@@ -9,9 +11,13 @@ def AddAWordInDict(key, value, dict):
         dict[key] = value
     return dict
 
-#A dictionary is a collection which is ordered, changeable and do not allow duplicates.
-#It used to store data values in key:value pairs
-dictEnFr = {'one':'une','two':'deux','three':'trois','four':'quatre','five':'cinq','six':'six'}
+# A dictionary is a collection which is ordered, changeable and do not allow duplicates.
+# It used to store words in English and French pairs
+# The words of dictionary is stored as JSON string in words.json file
+file = open('words.json','r')
+jsonStr = file.read()
+file.close()
+dictEnFr = json.loads(jsonStr)
 print('Let''s start learning French: type end to finish.')
 # A while loop is used to wait for user's input, until user type in 'end'
 while (True):
@@ -34,3 +40,8 @@ while (True):
         print('A new word is added to dictionary')
 print('Learning finished.')
 print('All words in the dictionary:', dictEnFr)
+# Store dictionary in JSON string format into a file
+jsonStr = json.dumps(dictEnFr)
+file = open('words.json','w')
+file.write(jsonStr)
+file.close()
