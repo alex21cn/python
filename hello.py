@@ -24,6 +24,7 @@ name = ['a','b','c']
 value = [1,2,3]
 dict1 = dict(zip(name, value))
 dict1['d'] = 4
+dict1['e'] = 5
 dict1.pop('a')
 print(dict1)
 set1 = {1,2,3,4,5,6}
@@ -32,3 +33,4 @@ print(set1-set2)
 print(set1|set2)
 print(set1&set2)
 print(set1^set2)
+print(sorted(set1,reverse=True))

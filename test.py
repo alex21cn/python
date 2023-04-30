@@ -1,0 +1,36 @@
+def findAWordInDict(en, dict):
+    for element in dict:
+        if (element == en):
+            return dict[en]
+    return ''
+
+def AddAWordInDict(key, value, dict):
+    if (key not in dict):
+        dict[key] = value
+    return dict
+
+#A dictionary is a collection which is ordered, changeable and do not allow duplicates.
+#It used to store data values in key:value pairs
+dictEnFr = {'one':'une','two':'deux','three':'trois','four':'quatre','five':'cinq','six':'six'}
+print('Let''s start learning French: type end to finish.')
+# A while loop is used to wait for user's input, until user type in 'end'
+while (True):
+    en = input('Please input an English word: ')
+    if (en == 'end'):
+        break
+    # Call a procedure to return the translation, if not found, return a empty string
+    fr = findAWordInDict(en, dictEnFr)
+    if (fr != ''):
+        print('The French translation for {} is {}.'.format(en , fr))
+    else:
+        print('No translation found for', en)
+        # A while loop is used to wait for a valid French translation input
+        while (fr == ''):
+            fr = input('Please type the French translation for word {}: '.format(en))
+            if (fr == ''):
+                print('Invalid input!')
+        # Call a procedure to add the new word into the dictionary
+        dictEnFr = AddAWordInDict(en, fr, dictEnFr)
+        print('A new word is added to dictionary')
+print('Learning finished.')
+print('All words in the dictionary:', dictEnFr)
