@@ -14,6 +14,7 @@ def addAWordInDict(key, value, dict):
 def removeWordsFromDict(keys, dict):
     keys = keys.split(',')
     for key in keys:
+        key = key.strip()
         if (key in dict):
             del dict[key]
     return dict
