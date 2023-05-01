@@ -35,7 +35,7 @@ if (delete.lower() == 'yes' or delete.lower() == 'y'):
     print('{} has been removed from the dictionary!'.format(wordsToRemove))
     print('Here is the current dictionary: ', dictEnFr)
 print('Let''s start learning French: press enter to exist.')
-# A while loop is used to wait for user's input, until user type in 'end'
+# A while loop is used to wait for user's input, until user press enter
 while (True):
     en = input('Please input an English word: ')
     if (en == ''):
