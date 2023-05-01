@@ -1,14 +1,22 @@
 import json
 
 def findAWordInDict(en, dict):
-    for element in dict:
-        if (element == en):
-            return dict[en]
-    return ''
+    if (en in dict):
+        return dict[en]
+    else:
+        return ''
 
-def AddAWordInDict(key, value, dict):
+def addAWordInDict(key, value, dict):
     if (key not in dict):
         dict[key] = value
+    return dict
+
+def removeWordsFromDict(keys, dict):
+    keys = keys.split(',')
+    for key in keys:
+        key = key.strip()
+        if (key in dict):
+            del dict[key]
     return dict
 
 # A dictionary is a collection which is ordered, changeable and do not allow duplicates.
@@ -17,12 +25,20 @@ def AddAWordInDict(key, value, dict):
 file = open('words.json','r')
 jsonStr = file.read()
 file.close()
+# dictEnFr = {'one':'une','two':'deux','three':'trois','four':'quatre','five':'cinq','six':'six'}
 dictEnFr = json.loads(jsonStr)
-print('Let''s start learning French: type end to finish.')
-# A while loop is used to wait for user's input, until user type in 'end'
+print('Here is the current dictionary: ', dictEnFr)
+delete = input('Do you want to remove words from the dictionary?(yes/no): ')
+if (delete.lower() == 'yes' or delete.lower() == 'y'):
+    wordsToRemove = input('Please type the words you want to remove, if you type multiple words, use "," to separate them: ')
+    dictEnFr = removeWordsFromDict(wordsToRemove, dictEnFr)
+    print('{} has been removed from the dictionary!'.format(wordsToRemove))
+    print('Here is the current dictionary: ', dictEnFr)
+print('Let''s start learning French: press enter to exist.')
+# A while loop is used to wait for user's input, until user press enter
 while (True):
     en = input('Please input an English word: ')
-    if (en == 'end'):
+    if (en == ''):
         break
     # Call a procedure to return the translation, if not found, return a empty string
     fr = findAWordInDict(en, dictEnFr)
@@ -36,7 +52,7 @@ while (True):
             if (fr == ''):
                 print('Invalid input!')
         # Call a procedure to add the new word into the dictionary
-        dictEnFr = AddAWordInDict(en, fr, dictEnFr)
+        dictEnFr = addAWordInDict(en, fr, dictEnFr)
         print('A new word is added to dictionary')
 print('Learning finished.')
 print('All words in the dictionary:', dictEnFr)
